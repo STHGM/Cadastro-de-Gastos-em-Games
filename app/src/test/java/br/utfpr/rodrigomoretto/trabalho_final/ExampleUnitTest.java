@@ -1,4 +1,4 @@
-package com.example.sthgm.cad_gastos_games;
+package br.utfpr.rodrigomoretto.trabalho_final;
 
 import org.junit.Test;
 
