@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="jogos_iniciais">
+        <item>@string/jogo_csgo</item>
+        <item>@string/jogo_paladins</item>
+        <item>@string/jogo_fortnite</item>
+    </string-array>
+</resources>
