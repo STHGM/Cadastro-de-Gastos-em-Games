@@ -66,10 +66,7 @@ public class JogosActivity extends AppCompatActivity {
         try {
             DatabaseHelper conexao = DatabaseHelper.getInstance(this);
 
-            lista = conexao.getJogoDao()
-                    .queryBuilder()
-                    .orderBy(Jogo.JOGO_NOME, true)
-                    .query();
+            lista = conexao.getJogoDao().queryBuilder().orderBy(Jogo.JOGO_NOME, true).query();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -183,9 +180,7 @@ public class JogosActivity extends AppCompatActivity {
         switch(item.getItemId()){
 
             case R.id.menuItemExibir:
-                JogoActivity.alterar(this,
-                        REQUISICAO_ALTERAR_JOGO,
-                        jogo);
+                JogoActivity.alterar(this, REQUISICAO_ALTERAR_JOGO, jogo);
                 return true;
 
             case R.id.menuItemDeletar:
@@ -197,4 +192,4 @@ public class JogosActivity extends AppCompatActivity {
         }
     }
 }
-}
+
