@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -39,7 +40,7 @@ public class JogoActivity extends AppCompatActivity {
     public static void alterar(Activity activity, int requestCode, Jogo jogo){
         Intent intent = new Intent(activity, JogoActivity.class);
 
-        intent.putExtra(MODO, NOVO);
+        intent.putExtra(MODO, ALTERAR);
         intent.putExtra(ID, jogo.getId());
 
         activity.startActivityForResult(intent, requestCode);
@@ -73,6 +74,8 @@ public class JogoActivity extends AppCompatActivity {
             } catch (SQLException e){
                 e.printStackTrace();
             }
+
+            setTitle(R.string.alterar_jogo);
         } else{
             jogo = new Jogo();
             setTitle(R.string.novo_jogo);
@@ -88,7 +91,7 @@ public class JogoActivity extends AppCompatActivity {
         try {
             DatabaseHelper conexao = DatabaseHelper.getInstance(this);
 
-            List<Jogo> lista = conexao.getJogoDao().queryBuilder().where().eq(Jogo.JOGO_NOME, jogo).query();
+            List<Jogo> lista = conexao.getJogoDao().queryBuilder().where().eq(Jogo.JOGO_NOME, nome).query();
 
             if (modo == NOVO){
                 if (lista.size() > 0){
@@ -98,6 +101,8 @@ public class JogoActivity extends AppCompatActivity {
 
                 jogo.setNome(nome);
                 conexao.getJogoDao().create(jogo);
+                //Toast.makeText(this, R.string.salvo_sucesso, Toast.LENGTH_SHORT).show();
+                //();
 
             } else {
                 if (!nome.equals(jogo.getNome())){
@@ -109,8 +114,13 @@ public class JogoActivity extends AppCompatActivity {
                     jogo.setNome(nome);
 
                     conexao.getJogoDao().update(jogo);
+                    //Toast.makeText(this, R.string.salvo_sucesso, Toast.LENGTH_SHORT).show();
+                    //finish();
                 }
             }
+            Toast.makeText(this, R.string.salvo_sucesso, Toast.LENGTH_SHORT).show();
+            setResult(Activity.RESULT_OK);
+            finish();
         } catch (SQLException e){
             e.printStackTrace();
         }

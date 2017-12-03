@@ -16,15 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PrincipaisActivity"
-            android:parentActivityName=".PrincipalActivity">
-        </activity>
-        <activity android:name=".JogoActivity"
-            android:parentActivityName=".JogosActivity">
-        </activity>
-        <activity android:name=".JogosActivity"
-            android:parentActivityName=".PrincipalActivity">
-        </activity>
+        <activity
+            android:name=".PrincipaisActivity"
+            android:parentActivityName=".PrincipalActivity"></activity>
+        <activity
+            android:name=".JogoActivity"
+            android:parentActivityName=".JogosActivity"></activity>
+        <activity
+            android:name=".JogosActivity"
+            android:parentActivityName=".PrincipalActivity"></activity>
+        <activity
+            android:name=".SobreActivity"
+            android:parentActivityName=".PrincipalActivity"></activity>
     </application>
 
 </manifest>

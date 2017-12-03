@@ -25,6 +25,12 @@
     <string name="txt_jogo">Jogo</string>
     <string name="novo_jogo">Novo Jogo</string>
     <string name="jogo_vazio">O nome do jogo está vazio!</string>
-    <string name="jogo_usado">Este nome de jogo já foi usado!</string>
+    <string name="jogo_usado">Este jogo está sendo usado e não pode ser deletado!</string>
     <string name="valor_invalido">O valor deve ser maior do que zero!</string>
+    <string name="txt_sobre_info">Cadastro de gastos em games é um aplicativo para gerenciar transações que você realiza em seus jogos com mais faclidade.</string>
+    <string name="txt_autor">Autor: Rodrigo Moretto</string>
+    <string name="txt_ra">RA: 1634100</string>
+    <string name="txt_info">Sobre o aplicativo</string>
+    <string name="alterar_jogo">Alterar Jogo</string>
+    <string name="salvo_sucesso">Salvo com sucesso!</string>
 </resources>

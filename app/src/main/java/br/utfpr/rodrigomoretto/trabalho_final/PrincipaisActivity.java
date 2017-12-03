@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -36,7 +37,7 @@ public class PrincipaisActivity extends AppCompatActivity {
     private Transacao transacao;
 
     public static void nova(Activity activity, int requestCode){
-        Intent intent = new Intent(activity, PrincipalActivity.class);
+        Intent intent = new Intent(activity, PrincipaisActivity.class);
 
         intent.putExtra(MODO, NOVO);
 
@@ -44,7 +45,7 @@ public class PrincipaisActivity extends AppCompatActivity {
     }
 
     public static void alterar(Activity activity, int requestCode, Transacao transacao){
-        Intent intent = new Intent(activity, PrincipalActivity.class);
+        Intent intent = new Intent(activity, PrincipaisActivity.class);
 
         intent.putExtra(MODO, ALTERAR);
         intent.putExtra(ID, transacao.getId());
@@ -98,8 +99,6 @@ public class PrincipaisActivity extends AppCompatActivity {
             return;
         }
 
-        //verificar valor?
-
         transacao.setNome(nomeTransacao);
         transacao.setValor(valor);
 
@@ -116,7 +115,7 @@ public class PrincipaisActivity extends AppCompatActivity {
             } else{
                 conexao.getTransacaoDao().update(transacao);
             }
-
+            Toast.makeText(this, R.string.salvo_sucesso, Toast.LENGTH_SHORT).show();
             setResult(Activity.RESULT_OK);
             finish();
         } catch (SQLException e){

@@ -62,7 +62,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
                 lista.add(jogo);
             }
 
-            getJogoDao().create((Jogo) lista);
+            getJogoDao().create(lista);
 
             TableUtils.createTable(connectionSource, Transacao.class);
 

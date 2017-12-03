@@ -57,6 +57,11 @@ public class JogosActivity extends AppCompatActivity {
             }
         });
 
+        popularLista();
+        registerForContextMenu(lvJogos);
+
+        setTitle(R.string.txt_jogos);
+
 
     }
     private void popularLista(){
