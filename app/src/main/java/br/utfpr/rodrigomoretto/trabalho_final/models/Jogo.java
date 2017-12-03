@@ -15,7 +15,7 @@ public class Jogo {
     @DatabaseField(generatedId = true, columnName = ID)
     private int id;
 
-    @DatabaseField(canBeNull = false, columnName = JOGO_NOME)
+    @DatabaseField(canBeNull = false, unique = true, columnName = JOGO_NOME)
     private String nome;
 
     public Jogo(){

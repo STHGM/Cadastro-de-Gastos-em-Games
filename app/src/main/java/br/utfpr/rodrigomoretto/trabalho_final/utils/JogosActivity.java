@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -17,60 +18,90 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.utfpr.rodrigomoretto.trabalho_final.R;
+import br.utfpr.rodrigomoretto.trabalho_final.models.Jogo;
 import br.utfpr.rodrigomoretto.trabalho_final.models.Transacao;
 import br.utfpr.rodrigomoretto.trabalho_final.persistence.DatabaseHelper;
 
-public class PrincipalActivity extends AppCompatActivity {
-    private ListView lvTransactions;
-    private ArrayAdapter<Transacao> listaAdapter;
+public class JogosActivity extends AppCompatActivity {
 
-    private static final int REQUISICAO_NOVA_TRANSACAO = 1;
-    private static final int REQUISICAO_ALTERAR_TRANSACAO = 2;
+    private ListView lvJogos;
+    private ArrayAdapter<Jogo> listaAdapter;
+
+    private static final int REQUISICAO_NOVO_JOGO = 1;
+    private static final int REQUISICAO_ALTERAR_JOGO = 2;
+
+    public static void abrir(Activity activity){
+
+        Intent intent = new Intent(activity, JogosActivity.class);
+
+        activity.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        lvTransactions = (ListView) findViewById(R.id.lvItens);
+        ActionBar barraAcao = getSupportActionBar();
+        if (barraAcao != null){
+            barraAcao.setDisplayHomeAsUpEnabled(true);
+        }
 
-        lvTransactions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvJogos = (ListView) findViewById(R.id.lvItens);
+
+        lvJogos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int posicao, long l) {
-
-                Transacao transacao = (Transacao) adapterView.getItemAtPosition(posicao);
-
-                PrincipaisActivity.alterar(PrincipalActivity.this, REQUISICAO_ALTERAR_TRANSACAO, transacao);
-
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                Jogo jogo = (Jogo) adapterView.getItemAtPosition(pos);
+                JogoActivity.alterar(JogosActivity.this, REQUISICAO_ALTERAR_JOGO, jogo);
             }
         });
-        popularLista();
 
-        registerForContextMenu(lvTransactions);
+
     }
-
     private void popularLista(){
 
-        List<Transacao> listaJogos = null;
+        List<Jogo> lista = null;
 
         try {
             DatabaseHelper conexao = DatabaseHelper.getInstance(this);
 
-            listaJogos = conexao.getTransacaoDao().queryBuilder().orderBy(Transacao.TRANSACAO_NOME, true).query();
+            lista = conexao.getJogoDao()
+                    .queryBuilder()
+                    .orderBy(Jogo.JOGO_NOME, true)
+                    .query();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        listaAdapter = new ArrayAdapter<Transacao>(this, android.R.layout.simple_list_item_1, listaJogos);
+        listaAdapter = new ArrayAdapter<Jogo>(this,
+                android.R.layout.simple_list_item_1,
+                lista);
 
-        lvTransactions.setAdapter(listaAdapter);
+        lvJogos.setAdapter(listaAdapter);
     }
 
-    private void excluirTransacao(final Transacao transacao){
+    private void excluirJogo(final Jogo jogo){
+
+        try {
+
+            DatabaseHelper conexao = DatabaseHelper.getInstance(this);
+
+            List<Transacao> lista = conexao.getTransacaoDao().queryBuilder().where()
+                    .eq(Transacao.ID_JOGO, jogo.getId()).query();
+
+            if (lista != null && lista.size() > 0){
+                UtilsGUI.avisoErro(this, R.string.jogo_usado);
+                return;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         String mensagem = getString(R.string.deseja_apagar)
-                + "\n" + transacao.getNome();
+                + "\n" + jogo.getNome();
 
         DialogInterface.OnClickListener listener =
                 new DialogInterface.OnClickListener() {
@@ -81,14 +112,13 @@ public class PrincipalActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
 
                                 try {
-                                    DatabaseHelper conexao =
-                                            DatabaseHelper.getInstance(PrincipalActivity.this);
+                                    DatabaseHelper conexao = DatabaseHelper.getInstance(JogosActivity.this);
 
-                                    conexao.getTransacaoDao().delete(transacao);
+                                    conexao.getJogoDao().delete(jogo);
 
-                                    listaAdapter.remove(transacao);
+                                    listaAdapter.remove(jogo);
 
-                                } catch (SQLException e) {
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
 
@@ -106,7 +136,7 @@ public class PrincipalActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requisicaoCode, int resultCode, Intent data) {
 
-        if ((requisicaoCode == REQUISICAO_NOVA_TRANSACAO || requisicaoCode == REQUISICAO_ALTERAR_TRANSACAO)
+        if ((requisicaoCode == REQUISICAO_NOVO_JOGO || requisicaoCode == REQUISICAO_ALTERAR_JOGO)
                 && resultCode == Activity.RESULT_OK){
 
             popularLista();
@@ -115,7 +145,8 @@ public class PrincipalActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.lista_transacoes, menu);
+        getMenuInflater().inflate(R.menu.lista_jogos, menu);
+
         return true;
     }
 
@@ -125,20 +156,16 @@ public class PrincipalActivity extends AppCompatActivity {
         switch(item.getItemId()){
 
             case R.id.menuItemNovo:
-                PrincipaisActivity.nova(this, REQUISICAO_NOVA_TRANSACAO);
+                JogoActivity.novo(this, REQUISICAO_NOVO_JOGO);
                 return true;
-
-            case R.id.menuItemJogos:
-                JogosActivity.abrir(this);
-                return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
         getMenuInflater().inflate(R.menu.item_selecionado, menu);
@@ -151,22 +178,23 @@ public class PrincipalActivity extends AppCompatActivity {
 
         info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
-        Transacao transacao = (Transacao) lvTransactions.getItemAtPosition(info.position);
+        Jogo jogo = (Jogo) lvJogos.getItemAtPosition(info.position);
 
         switch(item.getItemId()){
 
             case R.id.menuItemExibir:
-                PrincipaisActivity.alterar(this,
-                        REQUISICAO_NOVA_TRANSACAO,
-                        transacao);
+                JogoActivity.alterar(this,
+                        REQUISICAO_ALTERAR_JOGO,
+                        jogo);
                 return true;
 
             case R.id.menuItemDeletar:
-                excluirTransacao(transacao);
+                excluirJogo(jogo);
                 return true;
 
             default:
                 return super.onContextItemSelected(item);
         }
     }
+}
 }

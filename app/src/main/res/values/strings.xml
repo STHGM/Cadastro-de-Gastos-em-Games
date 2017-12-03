@@ -22,4 +22,8 @@
     <string name="alterar_transacao">Alterar Transação</string>
     <string name="nova_transacao">Nova Transação</string>
     <string name="deseja_apagar">Deseja realmente apagar este item?</string>
+    <string name="txt_jogo">Jogo</string>
+    <string name="novo_jogo">Novo Jogo</string>
+    <string name="jogo_vazio">O nome do jogo está vazio!</string>
+    <string name="jogo_usado">Este nome de jogo já foi usado!</string>
 </resources>
