@@ -3,4 +3,22 @@
     <string name="jogo_paladins">Paladins</string>
     <string name="jogo_csgo">Counter-Strike: Global Offensive</string>
     <string name="jogo_fortnite">Fortnite</string>
+    <string name="txt_transacao">Transação</string>
+    <string name="txt_valor">Valor</string>
+    <string name="txt_jogos">Jogos</string>
+    <string name="aviso">Aviso!</string>
+    <string name="ok">OK!</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="confirmacao">Confirmação</string>
+    <string name="nome_vazio">O nome da transação está vazio!</string>
+    <string name="valor_vazio">O valor da transação está vazio!</string>
+    <string name="txt_salvar">Salvar</string>
+    <string name="txt_cancelar">Cancelar</string>
+    <string name="txt_novo">Novo</string>
+    <string name="txt_exibir">Exibir informações</string>
+    <string name="txt_deletar">Deletar</string>
+    <string name="txt_sobre">Sobre</string>
+    <string name="alterar_transacao">Alterar Transação</string>
+    <string name="nova_transacao">Nova Transação</string>
 </resources>
