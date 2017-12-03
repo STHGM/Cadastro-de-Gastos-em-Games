@@ -26,4 +26,5 @@
     <string name="novo_jogo">Novo Jogo</string>
     <string name="jogo_vazio">O nome do jogo está vazio!</string>
     <string name="jogo_usado">Este nome de jogo já foi usado!</string>
+    <string name="valor_invalido">O valor deve ser maior do que zero!</string>
 </resources>

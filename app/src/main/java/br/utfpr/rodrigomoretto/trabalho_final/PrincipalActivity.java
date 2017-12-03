@@ -1,4 +1,4 @@
-package br.utfpr.rodrigomoretto.trabalho_final.utils;
+package br.utfpr.rodrigomoretto.trabalho_final;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -16,9 +16,9 @@ import android.widget.ListView;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.utfpr.rodrigomoretto.trabalho_final.R;
 import br.utfpr.rodrigomoretto.trabalho_final.models.Transacao;
 import br.utfpr.rodrigomoretto.trabalho_final.persistence.DatabaseHelper;
+import br.utfpr.rodrigomoretto.trabalho_final.utils.UtilsGUI;
 
 public class PrincipalActivity extends AppCompatActivity {
     private ListView lvTransactions;

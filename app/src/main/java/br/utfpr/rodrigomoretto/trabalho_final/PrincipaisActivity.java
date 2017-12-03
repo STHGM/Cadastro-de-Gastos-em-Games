@@ -1,10 +1,10 @@
-package br.utfpr.rodrigomoretto.trabalho_final.utils;
+package br.utfpr.rodrigomoretto.trabalho_final;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -14,10 +14,10 @@ import android.widget.Spinner;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.utfpr.rodrigomoretto.trabalho_final.R;
 import br.utfpr.rodrigomoretto.trabalho_final.models.Jogo;
 import br.utfpr.rodrigomoretto.trabalho_final.models.Transacao;
 import br.utfpr.rodrigomoretto.trabalho_final.persistence.DatabaseHelper;
+import br.utfpr.rodrigomoretto.trabalho_final.utils.UtilsGUI;
 
 public class PrincipaisActivity extends AppCompatActivity {
 
@@ -91,6 +91,12 @@ public class PrincipaisActivity extends AppCompatActivity {
         }
 
         double valor = Double.parseDouble(txtValor);
+
+        if (valor < 0){
+            UtilsGUI.avisoErro(this, R.string.valor_invalido);
+            edtValor.requestFocus();
+            return;
+        }
 
         //verificar valor?
 
