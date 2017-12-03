@@ -33,7 +33,7 @@ public class UtilsGUI {
         alert.show();
     }
 
-    public static void confirmaAcao(Context contexto,
+    public static void confirma(Context contexto,
                                     String mensagem,
                                     DialogInterface.OnClickListener listener){
 
