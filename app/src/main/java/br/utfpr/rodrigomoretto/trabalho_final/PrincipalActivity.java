@@ -53,6 +53,7 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
 
+        //inicio do menu contextual
         lvTransactions.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         lvTransactions.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
             @Override
@@ -129,6 +130,7 @@ public class PrincipalActivity extends AppCompatActivity {
                     view.setBackgroundColor(Color.TRANSPARENT);
                 }
             }
+            //fim do menu de acao contextual
         });
 
         popularLista();
