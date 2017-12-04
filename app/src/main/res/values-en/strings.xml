@@ -28,7 +28,7 @@
     <string name="alterar_transacao">Change Transaction</string>
     <string name="aviso">Warning!</string>
     <string name="confirmacao">Confirmation</string>
-    <string name="deseja_apagar">Do you really wish to delete this item?</string>
+    <string name="deseja_apagar">Do you really wish to delete the selected item?</string>
     <string name="jogo_usado">This game is already being used and can\'t be deleted!</string>
     <string name="jogo_vazio">The game name is empty!</string>
     <string name="nao">No</string>

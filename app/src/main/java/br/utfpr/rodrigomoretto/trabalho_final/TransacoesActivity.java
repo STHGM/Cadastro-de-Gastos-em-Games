@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ActionMode;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -52,8 +51,6 @@ public class TransacoesActivity extends AppCompatActivity {
 
             }
         });
-
-        //inicio do menu contextual
         lvTransactions.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         lvTransactions.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
             @Override
@@ -88,39 +85,62 @@ public class TransacoesActivity extends AppCompatActivity {
                 if (lvTransactions.getCheckedItemCount() > 1){
                     menu.getItem(0).setVisible(false);
                 } else{
-                    menu.getItem(0).setVisible(false);
+                    menu.getItem(0).setVisible(true);
                 }
                 return true;
             }
 
             @Override
-            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-
-                AdapterView.AdapterContextMenuInfo info;
-
-                info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-                Transacao transacao = (Transacao) lvTransactions.getItemAtPosition(info.position);
-
+            public boolean onActionItemClicked(final ActionMode mode, MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.menuAcaoAlterar:
                         for (int posicao = lvTransactions.getChildCount(); posicao >= 0; posicao--){
                             if (lvTransactions.isItemChecked(posicao)){
-                                //TransacaoActivity.alterar(this, REQUISICAO_ALTERAR_TRANSACAO, transacao);
+                                Transacao transacao = (Transacao) lvTransactions.getItemAtPosition(posicao);
+                                TransacaoActivity.alterar(TransacoesActivity.this, REQUISICAO_ALTERAR_TRANSACAO, transacao);
+                                break;
                             }
                         }
                         mode.finish();
                         return true;
 
                     case R.id.menuAcaoDeletar:
-                        excluirTransacao(transacao);
-                        mode.finish();
+                        String mensagem = getString(R.string.deseja_apagar);
+                        DialogInterface.OnClickListener listener =
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        switch(which){
+                                            case DialogInterface.BUTTON_POSITIVE:
+
+                                                try {
+                                                    DatabaseHelper conexao = DatabaseHelper.getInstance(TransacoesActivity.this);
+                                                    for (int posicao = lvTransactions.getChildCount(); posicao >= 0; posicao--){
+                                                        if (lvTransactions.isItemChecked(posicao)){
+                                                            Transacao transacao = (Transacao) lvTransactions.getItemAtPosition(posicao);
+                                                            conexao.getTransacaoDao().delete(transacao);
+                                                            listaAdapter.remove(transacao);
+                                                            break;
+                                                        }
+                                                    }
+                                                    mode.finish();
+
+                                                } catch (SQLException e) {
+                                                    e.printStackTrace();
+                                                }
+                                                break;
+                                            case DialogInterface.BUTTON_NEGATIVE:
+                                                break;
+                                        }
+                                    }
+                                };
+
+                        UtilsGUI.confirma(TransacoesActivity.this, mensagem, listener);
                         return true;
 
                     default:
                         return false;
                 }
-                //return true;
             }
 
             @Override
@@ -156,41 +176,7 @@ public class TransacoesActivity extends AppCompatActivity {
         lvTransactions.setAdapter(listaAdapter);
     }
 
-    private void excluirTransacao(final Transacao transacao){
 
-        String mensagem = getString(R.string.deseja_apagar)
-                + "\n" + transacao.getNome();
-
-        DialogInterface.OnClickListener listener =
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        switch(which){
-                            case DialogInterface.BUTTON_POSITIVE:
-
-                                try {
-                                    DatabaseHelper conexao =
-                                            DatabaseHelper.getInstance(TransacoesActivity.this);
-
-                                    conexao.getTransacaoDao().delete(transacao);
-
-                                    listaAdapter.remove(transacao);
-
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                }
-
-                                break;
-                            case DialogInterface.BUTTON_NEGATIVE:
-
-                                break;
-                        }
-                    }
-                };
-
-        UtilsGUI.confirma(this, mensagem, listener);
-    }
 
     @Override
     protected void onActivityResult(int requisicaoCode, int resultCode, Intent data) {
@@ -230,39 +216,4 @@ public class TransacoesActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-
-        getMenuInflater().inflate(R.menu.item_selecionado, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-
-        AdapterView.AdapterContextMenuInfo info;
-
-        info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-        Transacao transacao = (Transacao) lvTransactions.getItemAtPosition(info.position);
-
-        switch(item.getItemId()){
-
-            case R.id.menuItemExibir:
-                TransacaoActivity.alterar(this,
-                        REQUISICAO_ALTERAR_TRANSACAO,
-                        transacao);
-                return true;
-
-            case R.id.menuItemDeletar:
-                excluirTransacao(transacao);
-                return true;
-
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
-
-
 }
