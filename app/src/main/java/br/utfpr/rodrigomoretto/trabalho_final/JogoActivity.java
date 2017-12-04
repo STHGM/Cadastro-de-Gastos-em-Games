@@ -49,7 +49,7 @@ public class JogoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jogos);
+        setContentView(R.layout.activity_cad_jogos);
 
         ActionBar barraAcao = getSupportActionBar();
         if (barraAcao != null){
