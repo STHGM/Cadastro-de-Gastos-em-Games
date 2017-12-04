@@ -69,7 +69,6 @@ public class JogoActivity extends AppCompatActivity {
             try {
                 DatabaseHelper conexao = DatabaseHelper.getInstance(this);
                 jogo = conexao.getJogoDao().queryForId(id);
-
                 edtJogo.setText(jogo.getNome());
             } catch (SQLException e){
                 e.printStackTrace();
@@ -90,7 +89,6 @@ public class JogoActivity extends AppCompatActivity {
 
         try {
             DatabaseHelper conexao = DatabaseHelper.getInstance(this);
-
             List<Jogo> lista = conexao.getJogoDao().queryBuilder().where().eq(Jogo.JOGO_NOME, nome).query();
 
             if (modo == NOVO){
@@ -101,7 +99,6 @@ public class JogoActivity extends AppCompatActivity {
 
                 jogo.setNome(nome);
                 conexao.getJogoDao().create(jogo);
-                //Toast.makeText(this, R.string.salvo_sucesso, Toast.LENGTH_SHORT).show();
 
             } else {
                 if (!nome.equals(jogo.getNome())){
@@ -109,12 +106,9 @@ public class JogoActivity extends AppCompatActivity {
                         UtilsGUI.avisoErro(this, getString(R.string.jogo_usado));
                         return;
                     }
-
+                    
                     jogo.setNome(nome);
-
                     conexao.getJogoDao().update(jogo);
-                    //Toast.makeText(this, R.string.salvo_sucesso, Toast.LENGTH_SHORT).show();
-                    //finish();
                 }
             }
             Toast.makeText(this, R.string.salvo_sucesso, Toast.LENGTH_SHORT).show();
