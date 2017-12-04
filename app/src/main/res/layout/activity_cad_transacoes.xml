@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.utfpr.rodrigomoretto.trabalho_final.PrincipaisActivity">
+    tools:context="br.utfpr.rodrigomoretto.trabalho_final.TransacaoActivity">
 
     <TextView
         android:id="@+id/txtViewTransacao"

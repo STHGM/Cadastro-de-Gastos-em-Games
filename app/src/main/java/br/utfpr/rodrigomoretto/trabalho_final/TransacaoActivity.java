@@ -20,7 +20,7 @@ import br.utfpr.rodrigomoretto.trabalho_final.models.Transacao;
 import br.utfpr.rodrigomoretto.trabalho_final.persistence.DatabaseHelper;
 import br.utfpr.rodrigomoretto.trabalho_final.utils.UtilsGUI;
 
-public class PrincipaisActivity extends AppCompatActivity {
+public class TransacaoActivity extends AppCompatActivity {
 
     public static final String MODO = "MODO";
     public static final String ID = "ID";
@@ -37,7 +37,7 @@ public class PrincipaisActivity extends AppCompatActivity {
     private Transacao transacao;
 
     public static void nova(Activity activity, int requestCode){
-        Intent intent = new Intent(activity, PrincipaisActivity.class);
+        Intent intent = new Intent(activity, TransacaoActivity.class);
 
         intent.putExtra(MODO, NOVO);
 
@@ -45,7 +45,7 @@ public class PrincipaisActivity extends AppCompatActivity {
     }
 
     public static void alterar(Activity activity, int requestCode, Transacao transacao){
-        Intent intent = new Intent(activity, PrincipaisActivity.class);
+        Intent intent = new Intent(activity, TransacaoActivity.class);
 
         intent.putExtra(MODO, ALTERAR);
         intent.putExtra(ID, transacao.getId());
@@ -131,7 +131,7 @@ public class PrincipaisActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principais);
+        setContentView(R.layout.activity_cad_transacoes);
 
         ActionBar barraAcao = getSupportActionBar();
         if (barraAcao != null){

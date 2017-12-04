@@ -25,7 +25,7 @@ import br.utfpr.rodrigomoretto.trabalho_final.persistence.DatabaseHelper;
 import br.utfpr.rodrigomoretto.trabalho_final.utils.UtilsGUI;
 
 
-public class PrincipalActivity extends AppCompatActivity {
+public class TransacoesActivity extends AppCompatActivity {
 
     private ListView lvTransactions;
     private ArrayAdapter<Transacao> listaAdapter;
@@ -36,7 +36,7 @@ public class PrincipalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_listas);
 
 
 
@@ -48,7 +48,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
                 Transacao transacao = (Transacao) adapterView.getItemAtPosition(posicao);
 
-                PrincipaisActivity.alterar(PrincipalActivity.this, REQUISICAO_ALTERAR_TRANSACAO, transacao);
+                TransacaoActivity.alterar(TransacoesActivity.this, REQUISICAO_ALTERAR_TRANSACAO, transacao);
 
             }
         });
@@ -106,7 +106,7 @@ public class PrincipalActivity extends AppCompatActivity {
                     case R.id.menuAcaoAlterar:
                         for (int posicao = lvTransactions.getChildCount(); posicao >= 0; posicao--){
                             if (lvTransactions.isItemChecked(posicao)){
-                                //PrincipaisActivity.alterar(this, REQUISICAO_ALTERAR_TRANSACAO, transacao);
+                                //TransacaoActivity.alterar(this, REQUISICAO_ALTERAR_TRANSACAO, transacao);
                             }
                         }
                         mode.finish();
@@ -171,7 +171,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
                                 try {
                                     DatabaseHelper conexao =
-                                            DatabaseHelper.getInstance(PrincipalActivity.this);
+                                            DatabaseHelper.getInstance(TransacoesActivity.this);
 
                                     conexao.getTransacaoDao().delete(transacao);
 
@@ -214,7 +214,7 @@ public class PrincipalActivity extends AppCompatActivity {
         switch(item.getItemId()){
 
             case R.id.menuItemNovo:
-                PrincipaisActivity.nova(this, REQUISICAO_NOVA_TRANSACAO);
+                TransacaoActivity.nova(this, REQUISICAO_NOVA_TRANSACAO);
                 return true;
 
             case R.id.menuItemJogos:
@@ -250,7 +250,7 @@ public class PrincipalActivity extends AppCompatActivity {
         switch(item.getItemId()){
 
             case R.id.menuItemExibir:
-                PrincipaisActivity.alterar(this,
+                TransacaoActivity.alterar(this,
                         REQUISICAO_ALTERAR_TRANSACAO,
                         transacao);
                 return true;

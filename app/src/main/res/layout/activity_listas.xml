@@ -5,7 +5,7 @@
     android:id="@+id/layoutPrincipal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.utfpr.rodrigomoretto.trabalho_final.PrincipalActivity">
+    tools:context="br.utfpr.rodrigomoretto.trabalho_final.TransacoesActivity">
 
     <ListView
         android:id="@+id/lvItens"

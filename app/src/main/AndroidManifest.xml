@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PrincipalActivity">
+        <activity android:name=".TransacoesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,17 +17,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PrincipaisActivity"
-            android:parentActivityName=".PrincipalActivity"></activity>
+            android:name=".TransacaoActivity"
+            android:parentActivityName=".TransacoesActivity"></activity>
         <activity
             android:name=".JogoActivity"
             android:parentActivityName=".JogosActivity"></activity>
         <activity
             android:name=".JogosActivity"
-            android:parentActivityName=".PrincipalActivity"></activity>
+            android:parentActivityName=".TransacoesActivity"></activity>
         <activity
             android:name=".SobreActivity"
-            android:parentActivityName=".PrincipalActivity"></activity>
+            android:parentActivityName=".TransacoesActivity"></activity>
     </application>
 
 </manifest>
