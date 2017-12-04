@@ -33,4 +33,9 @@
     <string name="txt_info">Sobre o aplicativo</string>
     <string name="alterar_jogo">Alterar Jogo</string>
     <string name="salvo_sucesso">Salvo com sucesso!</string>
+    <string name="preferencia_cor">br.utfpr.rodrigomoretto.trabalho_final.PREFERENCIAS_CORES</string>
+    <string name="cor_fundo">COR_FUNDO</string>
+    <string name="txt_azul">Azul</string>
+    <string name="txt_verde">Verde</string>
+    <string name="txt_vermelho">Vermelho</string>
 </resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/grupoCores"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/corAzul"
+            android:title="@string/txt_azul" />
+        <item
+            android:id="@+id/corVerde"
+            android:title="@string/txt_verde" />
+        <item
+            android:id="@+id/corVermelho"
+            android:title="@string/txt_vermelho" />
+    </group>
+
+</menu>

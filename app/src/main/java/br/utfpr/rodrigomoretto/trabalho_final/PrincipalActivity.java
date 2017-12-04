@@ -21,6 +21,7 @@ import br.utfpr.rodrigomoretto.trabalho_final.persistence.DatabaseHelper;
 import br.utfpr.rodrigomoretto.trabalho_final.utils.UtilsGUI;
 
 public class PrincipalActivity extends AppCompatActivity {
+
     private ListView lvTransactions;
     private ArrayAdapter<Transacao> listaAdapter;
 
@@ -31,6 +32,8 @@ public class PrincipalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+
 
         lvTransactions = (ListView) findViewById(R.id.lvItens);
 
@@ -131,7 +134,7 @@ public class PrincipalActivity extends AppCompatActivity {
             case R.id.menuItemJogos:
                 JogosActivity.abrir(this);
                 return true;
-            
+
             case R.id.menuItemSobre:
                 Intent intent = new Intent(this, SobreActivity.class);
                 this.startActivity(intent);
@@ -169,22 +172,11 @@ public class PrincipalActivity extends AppCompatActivity {
             case R.id.menuItemDeletar:
                 excluirTransacao(transacao);
                 return true;
-            /*case R.id.menuItemSobre:
-                Intent intent = new Intent(this, SobreActivity.class);
-                this.startActivity(intent);
-                return true;*/
+
             default:
                 return super.onContextItemSelected(item);
         }
     }
 
 
-
-    /*public void telaSobre(){
-        Intent intent = new Intent(this, SobreActivity.class);
-
-        //intent.putExtra()
-
-        startActivity(intent);
-    }*/
 }
