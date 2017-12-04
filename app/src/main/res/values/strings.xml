@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Cadastro de Gastos em Games</string>
-    <string name="jogo_paladins">Paladins</string>
-    <string name="jogo_csgo">Counter-Strike: Global Offensive</string>
-    <string name="jogo_fortnite">Fortnite</string>
+    <string name="jogo_paladins" translatable="false">Paladins</string>
+    <string name="jogo_csgo" translatable="false">Counter-Strike: Global Offensive</string>
+    <string name="jogo_fortnite" translatable="false">Fortnite</string>
     <string name="txt_transacao">Transação</string>
     <string name="txt_valor">Valor</string>
     <string name="txt_jogos">Jogos</string>
     <string name="aviso">Aviso!</string>
-    <string name="ok">OK!</string>
+    <string name="ok" translatable="false">OK!</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
     <string name="confirmacao">Confirmação</string>
@@ -33,8 +33,8 @@
     <string name="txt_info">Sobre o aplicativo</string>
     <string name="alterar_jogo">Alterar Jogo</string>
     <string name="salvo_sucesso">Salvo com sucesso!</string>
-    <string name="preferencia_cor">br.utfpr.rodrigomoretto.trabalho_final.PREFERENCIAS_CORES</string>
-    <string name="cor_fundo">COR_FUNDO</string>
+    <string name="preferencia_cor" translatable="false">br.utfpr.rodrigomoretto.trabalho_final.PREFERENCIAS_CORES</string>
+    <string name="cor_fundo" translatable="false">COR_FUNDO</string>
     <string name="txt_azul">Azul</string>
     <string name="txt_verde">Verde</string>
     <string name="txt_vermelho">Vermelho</string>

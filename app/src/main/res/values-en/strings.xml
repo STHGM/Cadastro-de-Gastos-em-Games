@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Game Expenses Register</string>
+    <string name="nova_transacao">New Transaction</string>
+    <string name="novo_jogo">New Game</string>
+    <string name="salvo_sucesso">Succesfully saved!</string>
+    <string name="sim">Yes</string>
+    <string name="txt_autor">Author: Rodrigo Moretto</string>
+    <string name="txt_azul">Blue</string>
+    <string name="txt_cancelar">Cancel</string>
+    <string name="txt_deletar">Delete</string>
+    <string name="txt_exibir">Show info</string>
+    <string name="txt_info">About the application</string>
+    <string name="txt_jogo">Game</string>
+    <string name="txt_jogos">Games</string>
+    <string name="txt_novo">New</string>
+    <string name="txt_ra">AR: 1634100</string>
+    <string name="txt_salvar">Save</string>
+    <string name="txt_sobre">About</string>
+    <string name="txt_sobre_info">Game expenses register is an application to manage transactions you make within your games more easily.</string>
+    <string name="txt_transacao">Transaction</string>
+    <string name="txt_valor">Value</string>
+    <string name="txt_verde">Green</string>
+    <string name="txt_vermelho">Red</string>
+    <string name="valor_invalido">The value must be higher than zero!</string>
+    <string name="valor_vazio">The transaction value is empty!</string>
+    <string name="alterar_jogo">Change Game</string>
+    <string name="alterar_transacao">Change Transaction</string>
+    <string name="aviso">Warning!</string>
+    <string name="confirmacao">Confirmation</string>
+    <string name="deseja_apagar">Do you really wish to delete this item?</string>
+    <string name="jogo_usado">This game is already being used and can\'t be deleted!</string>
+    <string name="jogo_vazio">The game name is empty!</string>
+    <string name="nao">No</string>
+    <string name="nome_vazio">The transaction name is empty!</string>
+</resources>
