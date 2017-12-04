@@ -29,11 +29,13 @@
     <string name="aviso">Warning!</string>
     <string name="confirmacao">Confirmation</string>
     <string name="deseja_apagar">Do you really wish to delete the selected item?</string>
-    <string name="jogo_usado">This game is already being used and can\'t be deleted!</string>
+    <string name="jogo_usado">The game is already being used on a transaction and can\'t be deleted!</string>
     <string name="jogo_vazio">The game name is empty!</string>
     <string name="nao">No</string>
     <string name="nome_vazio">The transaction name is empty!</string>
     <string name="txt_alterar">Change</string>
+    <string name="nome_jogo_usado">This game name is already beeing used</string>
+
     <plurals name="selecionado">
         <item quantity="one">%d selected</item>
         <item quantity="other">%d selected</item>

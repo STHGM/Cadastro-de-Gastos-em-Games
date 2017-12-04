@@ -95,7 +95,7 @@ public class JogoActivity extends AppCompatActivity {
 
             if (modo == NOVO){
                 if (lista.size() > 0){
-                    UtilsGUI.avisoErro(this, R.string.jogo_usado);
+                    UtilsGUI.avisoErro(this, getString(R.string.jogo_usado));
                     return;
                 }
 
@@ -107,7 +107,7 @@ public class JogoActivity extends AppCompatActivity {
             } else {
                 if (!nome.equals(jogo.getNome())){
                     if (lista.size() >= 1){
-                        UtilsGUI.avisoErro(this, R.string.jogo_usado);
+                        UtilsGUI.avisoErro(this, getString(R.string.jogo_usado));
                         return;
                     }
 

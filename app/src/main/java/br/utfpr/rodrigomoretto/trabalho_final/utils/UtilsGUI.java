@@ -13,13 +13,13 @@ import br.utfpr.rodrigomoretto.trabalho_final.R;
 
 public class UtilsGUI {
 
-    public static void avisoErro(Context contexto, int idTexto){
+    public static void avisoErro(Context contexto, String texto){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(contexto);
 
         builder.setTitle(R.string.aviso);
         builder.setIcon(android.R.drawable.ic_dialog_alert);
-        builder.setMessage(idTexto);
+        builder.setMessage(texto);
 
         builder.setNeutralButton(R.string.ok,
                 new DialogInterface.OnClickListener() {
@@ -58,7 +58,7 @@ public class UtilsGUI {
         String texto = editText.getText().toString();
 
         if (UtilsString.stringVazia(texto)){
-            UtilsGUI.avisoErro(contexto, idMensagemErro);
+            UtilsGUI.avisoErro(contexto, contexto.getString(idMensagemErro));
             editText.setText(null);
             editText.requestFocus();
             return null;

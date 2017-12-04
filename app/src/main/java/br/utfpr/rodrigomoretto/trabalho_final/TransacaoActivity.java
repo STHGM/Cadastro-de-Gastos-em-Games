@@ -94,7 +94,7 @@ public class TransacaoActivity extends AppCompatActivity {
         double valor = Double.parseDouble(txtValor);
 
         if (valor < 0){
-            UtilsGUI.avisoErro(this, R.string.valor_invalido);
+            UtilsGUI.avisoErro(this, getString(R.string.valor_invalido));
             edtValor.requestFocus();
             return;
         }

@@ -36,19 +36,13 @@ public class TransacoesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listas);
-
-
-
         lvTransactions = (ListView) findViewById(R.id.lvItens);
 
         lvTransactions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicao, long l) {
-
                 Transacao transacao = (Transacao) adapterView.getItemAtPosition(posicao);
-
                 TransacaoActivity.alterar(TransacoesActivity.this, REQUISICAO_ALTERAR_TRANSACAO, transacao);
-
             }
         });
         lvTransactions.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
@@ -120,7 +114,7 @@ public class TransacoesActivity extends AppCompatActivity {
                                                             Transacao transacao = (Transacao) lvTransactions.getItemAtPosition(posicao);
                                                             conexao.getTransacaoDao().delete(transacao);
                                                             listaAdapter.remove(transacao);
-                                                            break;
+                                                            //break;
                                                         }
                                                     }
                                                     mode.finish();
