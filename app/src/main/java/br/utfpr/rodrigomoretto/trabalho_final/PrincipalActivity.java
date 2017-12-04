@@ -3,12 +3,16 @@ package br.utfpr.rodrigomoretto.trabalho_final;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,6 +23,7 @@ import java.util.List;
 import br.utfpr.rodrigomoretto.trabalho_final.models.Transacao;
 import br.utfpr.rodrigomoretto.trabalho_final.persistence.DatabaseHelper;
 import br.utfpr.rodrigomoretto.trabalho_final.utils.UtilsGUI;
+
 
 public class PrincipalActivity extends AppCompatActivity {
 
@@ -47,6 +52,85 @@ public class PrincipalActivity extends AppCompatActivity {
 
             }
         });
+
+        lvTransactions.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        lvTransactions.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+            @Override
+            public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+                boolean selecionado = lvTransactions.isItemChecked(position);
+
+                View view = lvTransactions.getChildAt(position);
+
+                if (selecionado){
+                    view.setBackgroundColor(Color.LTGRAY);
+                } else{
+                    view.setBackgroundColor(Color.TRANSPARENT);
+                }
+
+                int total = lvTransactions.getCheckedItemCount();
+
+                if (total > 0){
+                    mode.setTitle(getResources().getQuantityString(R.plurals.selecionado, total, total));
+                }
+                mode.invalidate();
+            }
+
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                MenuInflater inflater = mode.getMenuInflater();
+                inflater.inflate(R.menu.menu_acao, menu);
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                if (lvTransactions.getCheckedItemCount() > 1){
+                    menu.getItem(0).setVisible(false);
+                } else{
+                    menu.getItem(0).setVisible(false);
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+
+                AdapterView.AdapterContextMenuInfo info;
+
+                info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+                Transacao transacao = (Transacao) lvTransactions.getItemAtPosition(info.position);
+
+                switch (item.getItemId()){
+                    case R.id.menuAcaoAlterar:
+                        for (int posicao = lvTransactions.getChildCount(); posicao >= 0; posicao--){
+                            if (lvTransactions.isItemChecked(posicao)){
+                                //PrincipaisActivity.alterar(this, REQUISICAO_ALTERAR_TRANSACAO, transacao);
+                            }
+                        }
+                        mode.finish();
+                        return true;
+
+                    case R.id.menuAcaoDeletar:
+                        excluirTransacao(transacao);
+                        mode.finish();
+                        return true;
+
+                    default:
+                        return false;
+                }
+                //return true;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+                for (int posicao = 0; posicao < lvTransactions.getChildCount(); posicao++){
+                    View view = lvTransactions.getChildAt(posicao);
+                    view.setBackgroundColor(Color.TRANSPARENT);
+                }
+            }
+        });
+
         popularLista();
 
         registerForContextMenu(lvTransactions);
@@ -165,7 +249,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
             case R.id.menuItemExibir:
                 PrincipaisActivity.alterar(this,
-                        REQUISICAO_NOVA_TRANSACAO,
+                        REQUISICAO_ALTERAR_TRANSACAO,
                         transacao);
                 return true;
 

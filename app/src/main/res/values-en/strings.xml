@@ -33,4 +33,9 @@
     <string name="jogo_vazio">The game name is empty!</string>
     <string name="nao">No</string>
     <string name="nome_vazio">The transaction name is empty!</string>
+    <string name="txt_alterar">Change</string>
+    <plurals name="selecionado">
+        <item quantity="one">%d selected</item>
+        <item quantity="other">%d selected</item>
+    </plurals>
 </resources>

@@ -38,4 +38,9 @@
     <string name="txt_azul">Azul</string>
     <string name="txt_verde">Verde</string>
     <string name="txt_vermelho">Vermelho</string>
+    <string name="txt_alterar">Alterar</string>
+    <plurals name="selecionado">
+        <item quantity="one">%d selecionado</item>
+        <item quantity="other">%d selecionados</item>
+    </plurals>
 </resources>
