@@ -2,7 +2,7 @@
     <string name="app_name">Cadastro de Gastos em Games</string>
     <string name="jogo_paladins" translatable="false">Paladins</string>
     <string name="jogo_csgo" translatable="false">Counter-Strike: Global Offensive</string>
-    <string name="jogo_fortnite" translatable="false">Fortnite</string>
+    <string name="jogo_tf2" translatable="false">Team Fortress 2</string>
     <string name="txt_transacao">Transação</string>
     <string name="txt_valor">Valor</string>
     <string name="txt_jogos">Jogos</string>

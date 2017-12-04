@@ -59,7 +59,6 @@ public class JogosActivity extends AppCompatActivity {
                 JogoActivity.alterar(JogosActivity.this, REQUISICAO_ALTERAR_JOGO, jogo);
             }
         });
-        //inicio do menu de acao contextual
         lvJogos.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         lvJogos.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
             @Override
@@ -128,7 +127,6 @@ public class JogosActivity extends AppCompatActivity {
                                         UtilsGUI.avisoErro(JogosActivity.this, getString(R.string.jogo_usado) + "\n" + jogo.getNome());
                                         return true;
                                     }
-                                    //break;
                                 }
                             }
                         } catch (Exception e) {
@@ -210,55 +208,6 @@ public class JogosActivity extends AppCompatActivity {
         lvJogos.setAdapter(listaAdapter);
     }
 
-    /*private void excluirJogo(final Jogo jogo){
-
-        try {
-            DatabaseHelper conexao = DatabaseHelper.getInstance(this);
-            List<Transacao> lista = conexao.getTransacaoDao().queryBuilder().where()
-                    .eq(Transacao.ID_JOGO, jogo.getId()).query();
-
-            if (lista != null && lista.size() > 0){
-                UtilsGUI.avisoErro(this, R.string.jogo_usado);
-                return;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        String mensagem = getString(R.string.deseja_apagar)
-                + "\n" + jogo.getNome();
-
-        DialogInterface.OnClickListener listener =
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        switch(which){
-                            case DialogInterface.BUTTON_POSITIVE:
-
-                                try {
-                                    DatabaseHelper conexao = DatabaseHelper.getInstance(JogosActivity.this);
-
-                                    conexao.getJogoDao().delete(jogo);
-
-                                    listaAdapter.remove(jogo);
-
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-
-                                break;
-                            case DialogInterface.BUTTON_NEGATIVE:
-
-                                break;
-                        }
-                    }
-                };
-
-        UtilsGUI.confirma(this, mensagem, listener);
-    }*/
-
     @Override
     protected void onActivityResult(int requisicaoCode, int resultCode, Intent data) {
 
@@ -288,37 +237,5 @@ public class JogosActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    /*@Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-
-        getMenuInflater().inflate(R.menu.item_selecionado, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-
-        AdapterView.AdapterContextMenuInfo info;
-
-        info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-        Jogo jogo = (Jogo) lvJogos.getItemAtPosition(info.position);
-
-        switch(item.getItemId()){
-
-            case R.id.menuItemExibir:
-                JogoActivity.alterar(this, REQUISICAO_ALTERAR_JOGO, jogo);
-                return true;
-
-            case R.id.menuItemDeletar:
-                excluirJogo(jogo);
-                return true;
-
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }*/
 }
 

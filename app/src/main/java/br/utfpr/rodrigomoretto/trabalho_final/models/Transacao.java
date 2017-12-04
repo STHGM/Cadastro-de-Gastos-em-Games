@@ -71,6 +71,6 @@ public class Transacao {
 
     @Override
     public String toString(){
-        return getNome() + " - R$ " + getValor();
+        return getNome() + " - " + getJogo().toString() + " - R$ " + getValor();
     }
 }

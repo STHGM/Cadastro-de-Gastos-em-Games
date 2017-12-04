@@ -144,7 +144,6 @@ public class TransacoesActivity extends AppCompatActivity {
                     view.setBackgroundColor(Color.TRANSPARENT);
                 }
             }
-            //fim do menu de acao contextual
         });
 
         popularLista();
@@ -159,7 +158,11 @@ public class TransacoesActivity extends AppCompatActivity {
         try {
             DatabaseHelper conexao = DatabaseHelper.getInstance(this);
 
-            listaJogos = conexao.getTransacaoDao().queryBuilder().orderBy(Transacao.TRANSACAO_NOME, true).query();
+            listaJogos = conexao.getTransacaoDao().queryBuilder().orderBy(Transacao.ID_JOGO, true).query();
+
+            for (Transacao t : listaJogos){
+                conexao.getJogoDao().refresh(t.getJogo());
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

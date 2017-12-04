@@ -3,6 +3,6 @@
     <string-array name="jogos_iniciais">
         <item>@string/jogo_csgo</item>
         <item>@string/jogo_paladins</item>
-        <item>@string/jogo_fortnite</item>
+        <item>@string/jogo_tf2</item>
     </string-array>
 </resources>

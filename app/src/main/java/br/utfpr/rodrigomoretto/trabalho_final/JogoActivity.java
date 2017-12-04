@@ -102,7 +102,6 @@ public class JogoActivity extends AppCompatActivity {
                 jogo.setNome(nome);
                 conexao.getJogoDao().create(jogo);
                 //Toast.makeText(this, R.string.salvo_sucesso, Toast.LENGTH_SHORT).show();
-                //();
 
             } else {
                 if (!nome.equals(jogo.getNome())){
